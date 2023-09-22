@@ -1,3 +1,4 @@
+// A middleware function that runs during the reg res cycle
 const errorHandler = (err, req, res, next) => {
     const statusCode = res.statusCode ? res.statusCode : 500
 
