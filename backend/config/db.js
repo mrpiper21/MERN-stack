@@ -25,5 +25,3 @@ module.exports = connectDB;
 //             deprecationErrors: true,
 //         }
 //     });
-
-module.exports = connectDB

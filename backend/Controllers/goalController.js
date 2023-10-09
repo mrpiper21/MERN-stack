@@ -76,7 +76,7 @@ const deleteGoals = asyncHandler(async (req, res) => {
      // Check for user
      if (!user) {
          res.status(401)
-         throw new Error('User mot foumd')
+         throw new Error('User not foumd')
      }
      // make sure the logged in user matches the goal user
      if (goal.user.toString() !== user.id) {
