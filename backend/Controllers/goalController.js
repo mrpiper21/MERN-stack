@@ -2,7 +2,7 @@ const asyncHandler = require('express-async-handler')
 
 const Goal = require('../Models/goalmodel')
 
-const User = require('../Models/userModel') // included to make sure that users can't update and delete each others goals
+const user = require('../Models/userModel') // included to make sure that users can't update and delete each others goals
 
 //@desc  Get goals
 //@route GET //api/goals
@@ -41,14 +41,13 @@ const UpdateGoals = asyncHandler(async (req, res) => {
     }
 
     // making sure users do not update and delete each others goals
-    const user = await Goal.findById(req.user.id)
     // Check for user
-    if (!user) {
+    if (!req.user) {
         res.status(401)
         throw new Error('User mot foumd')
     }
     // make sure the logged in user matches the goal user
-    if (goal.user.toString() !== user.id) {
+    if (goal.user.toString() !== req.user.id ) {
         res.status(401)
         throw new Error('User not authorized')
     }
