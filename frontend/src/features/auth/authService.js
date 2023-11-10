@@ -24,9 +24,14 @@ const login = async (userData) => {
   return response.data
 }
 
+let token = req.headers.authorization.split(' ')[1]
 // Logout user
-const logout = () => {
-  localStorage.removeItem('user')
+const logout = async() => {
+  axios.get(API_URL + 'logout', {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
 }
 
 const authService = {

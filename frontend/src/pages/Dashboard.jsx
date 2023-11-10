@@ -1,5 +1,5 @@
-import {useEffect} from 'react'
-import {useNavigate} from 'react-router-dom'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import GoalForm from '../components/GoalForm'
 import GoalItem from '../components/GoalItem'
@@ -11,11 +11,11 @@ function Dashboard() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const { user } =useSelector((state) => state.auth)
-  const {goals, isLoading, isError, message} = useSelector((state) => state.goals)
- 
+  const { user } = useSelector((state) => state.auth)
+  const { goals, isLoading, isError, message } = useSelector((state) => state.goals)
+
   useEffect(() => {
-    if(isError){
+    if (isError) {
       console.log(message);
     }
 

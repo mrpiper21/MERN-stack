@@ -1,7 +1,10 @@
 const port = process.env.PORT || 5000
 const express = require('express')
 const colors = require('colors')
+const goalRoutes = require('./routes/goalsRoutes')
+const userRoutes = require('./routes/userRoutes')
 const { errorHandler } = require('./middleware/errorMiddleware')
+const cookieParser = require('cookie-parser')
 
 const connectDB = require('./config/db')
 
@@ -15,9 +18,10 @@ const app = express()
 // middle ware
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+app.use(cookieParser())
 
-app.use('/api/goals', require('./routes/goalsRoutes'))
-app.use('/api/users', require('./routes/userRoutes'))
+app.use('/api/goals', goalRoutes)
+app.use('/api/users', userRoutes)
 
 app.use(errorHandler)
 
